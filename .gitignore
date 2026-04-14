@@ -1,0 +1,4 @@
+data/*.txt
+data/*.xlsx
+.Rhistory
+.RData
