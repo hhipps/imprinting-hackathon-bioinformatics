@@ -5,3 +5,5 @@ data/*.xlsx
 liver_methyl_matrix.txt
 initialFeasibilityCheck.R
 speciesTable_full.xlsx
+.ipynb_checkpoints/
+.ipynb_checkpoints/
