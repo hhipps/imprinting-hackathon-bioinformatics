@@ -1,0 +1,9 @@
+data/*.txt
+data/*.xlsx
+.Rhistory
+.RData
+liver_methyl_matrix.txt
+initialFeasibilityCheck.R
+speciesTable_full.xlsx
+.ipynb_checkpoints/
+.ipynb_checkpoints/
