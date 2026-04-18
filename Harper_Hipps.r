@@ -30,7 +30,7 @@ methyl <- read_tsv("liver_methyl_matrix.txt") %>%
 head(methyl)
 dim(methyl)
 
-### Imprinted gene list
+### imprinted gene list
 lines <- readLines("ImpGenesKnown.txt")
 imprinted_list <- lapply(lines, function(line) {
   parts <- strsplit(line, "\t")[[1]]
@@ -45,38 +45,9 @@ imprinted_genes_all <- unique(imprinted_df$gene)
 
 ### annotate with imprinting status
 methyl$is_imprinted <- rownames(methyl) %in% imprinted_genes_all
-View(methyl)
 
 table(methyl$is_imprinted)
 length(imprinted_genes_all)
-
-
-### NEW Imprinted gene list
-impNew <- read_csv("ImpGenesKnownNew.csv")
-head(impNew)
-length(unique(impNew$gene))
-impSpecies <- unique(impNew$species)
-head(methyl)
-
-length(impSpecies)
-
-matching_species <- intersect(impSpecies, colnames(methyl))
-matching_species
-length(matching_species)
-
-missing_species <- setdiff(impSpecies, colnames(methyl))
-missing_species
-
-# remove any gene,species pairs that do not exist in the data
-# Filter impNew to only rows where species is in your methyl dataset
-impFiltered <- impNew %>% 
-  filter(species %in% matching_species)
-
-# Check how many genes remain
-length(unique(impFiltered$gene))
-
-# Compare to original
-length(unique(impNew$gene))
 
 ############ FIGURE 1 #############
 
@@ -197,7 +168,3 @@ cooks_plot <- ggplot(cookdf, aes(x=rowNum, y=cooks)) +
   theme_minimal()
 cooks_plot
 ggsave("figures/fig3_cooks_dist.png", cooks_plot, width = 5, height = 5, dpi = 300)
-
-
-
-############ FIGURE 4 #############
